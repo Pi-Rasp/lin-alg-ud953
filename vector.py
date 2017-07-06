@@ -1,3 +1,4 @@
+import math
 class Vector(object):
     def __init__(self, coordinates):
         try:
@@ -58,7 +59,6 @@ class Vector(object):
             
     
     def magnitude(self):
-        import math
         sum=0
         for i in self.coordinates:
             sum = sum + i*i
@@ -72,9 +72,21 @@ class Vector(object):
             return self.scalMult((1/self.magnitude()))
         except ZeroDivisionError:
             raise ZeroDivisionError("Can't Normalize with Zero Vector")
+    
+    
+    def dotProduct(self,v):
+        return sum([x*y for x,y in zip(self.coordinates, v.coordinates)])
+    
+    
+    def angle(self,v):
+        try:
+            if self.magnitude() * v.magnitude()==0:
+                raise ZeroDivisionError
+            return math.acos(self.normalization().dotProduct(v.normalization())) # Return in Radians
+        except ZeroDivisionError:
+            raise ZeroDivisionError("Can't find angle with Zero Vector")
             
             
-vector1 = Vector([8.813,-1.331,-6.247])
-vector2 = Vector([0,0])
-print(vector1.magnitude())
-print(vector2.normalization())
+vector1 = Vector([7.35,0.221,5.188])
+vector2 = Vector([2.751,8.259,3.985])
+print(math.degrees(vector1.angle(vector2)))
