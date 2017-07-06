@@ -66,10 +66,15 @@ class Vector(object):
     
     
     def normalization(self):
-        return self.scalMult((1/self.magnitude()))
+        try:
+            if self.magnitude() == 0:
+                raise ZeroDivisionError
+            return self.scalMult((1/self.magnitude()))
+        except ZeroDivisionError:
+            raise ZeroDivisionError("Can't Normalize with Zero Vector")
             
             
 vector1 = Vector([8.813,-1.331,-6.247])
-vector2 = Vector([1.996,3.108,-4.554])
+vector2 = Vector([0,0])
 print(vector1.magnitude())
 print(vector2.normalization())
