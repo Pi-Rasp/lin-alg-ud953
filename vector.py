@@ -28,7 +28,7 @@ class Vector(object):
             c = [None for x in range(v.dimension)]
             for i in range((v.dimension)):
                 c[i] = self.coordinates[i] + v.coordinates[i]
-            return tuple(c)
+            return Vector(c)
         except ValueError:
             raise ValueError("Length of both vectors must be same")
     
@@ -40,7 +40,7 @@ class Vector(object):
             c = [None for x in range(v.dimension)]
             for i in range((v.dimension)):
                 c[i] = self.coordinates[i] - v.coordinates[i]
-            return tuple(c)
+            return Vector(c)
         except ValueError:
             raise ValueError("Length of both vectors must be same")
     
@@ -52,14 +52,11 @@ class Vector(object):
             c = [None for x in range(self.dimension)]
             for i in range((self.dimension)):
                 c[i] = scal * self.coordinates[i]
-            return tuple(c)
+            return Vector(c)
         except ValueError:
             raise ValueError("Scalar cannot be empty")
             
             
-vector1 = Vector([1,2])
-vector2 = Vector([-1,-2])
-vector3 = Vector([1,2,3])
-vector4 = vector1.sub(vector2)
-print(vector1.scalMult(3))
-print(vector4)
+vector1 = Vector([1.671,-1.012,-0.318])
+vector2 = Vector([-8.223,0.878])
+print(vector1.scalMult(7.41))
