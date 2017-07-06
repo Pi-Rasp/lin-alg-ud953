@@ -56,7 +56,20 @@ class Vector(object):
         except ValueError:
             raise ValueError("Scalar cannot be empty")
             
+    
+    def magnitude(self):
+        import math
+        sum=0
+        for i in self.coordinates:
+            sum = sum + i*i
+        return math.sqrt(sum)
+    
+    
+    def normalization(self):
+        return self.scalMult((1/self.magnitude()))
             
-vector1 = Vector([1.671,-1.012,-0.318])
-vector2 = Vector([-8.223,0.878])
-print(vector1.scalMult(7.41))
+            
+vector1 = Vector([8.813,-1.331,-6.247])
+vector2 = Vector([1.996,3.108,-4.554])
+print(vector1.magnitude())
+print(vector2.normalization())
