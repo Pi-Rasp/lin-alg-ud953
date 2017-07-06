@@ -86,7 +86,16 @@ class Vector(object):
         except ZeroDivisionError:
             raise ZeroDivisionError("Can't find angle with Zero Vector")
             
+    
+    def checkOrthogonal(self,v,tolerance=1e-10):
+        return math.fabs(self.dotProduct(v))<tolerance
+    
+    
+    def checkParallel(self,v,tolerance=1e-10):
+        return math.fabs(self.magnitude())<tolerance or math.fabs(v.magnitude())<tolerance \
+                or self.angle(v)==0 or self.angle(v)==math.pi
             
-vector1 = Vector([7.35,0.221,5.188])
-vector2 = Vector([2.751,8.259,3.985])
-print(math.degrees(vector1.angle(vector2)))
+            
+vector1 = Vector([-2.328,-7.284,-1.214])
+vector2 = Vector([0,0,0])
+print((vector1.checkParallel(vector2)))
