@@ -106,8 +106,18 @@ class Vector(object):
         self_parallel = self.component_parallel_to(basis)
         return self.sub(self_parallel)
     
+    
+    def crossProduct(self,v):
+        c = []
+        a = self.coordinates
+        b = v.coordinates
+        c.append(a[1]*b[2] - a[2]*b[1])
+        c.append(-1*(a[0]*b[2] - a[2]*b[0]))
+        c.append(a[0]*b[1] - a[1]*b[0])
+        return Vector(c)
             
-vector1 = Vector([3.009,-6.172,3.692,-2.51])
-vector2 = Vector([6.404,-9.144,2.759,8.718])
-print((vector1.component_parallel_to(vector2)))
-print((vector1.component_orthogonal_to(vector2)))
+vector1 = Vector([1.5,9.547,3.691])
+vector2 = Vector([-6.007,0.124,5.772])
+cp = ((vector1.crossProduct(vector2)))
+print("Area of Triangle is :", cp.magnitude() * 0.5)
+#print((vector1.component_orthogonal_to(vector2)))
