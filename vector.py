@@ -94,8 +94,20 @@ class Vector(object):
     def checkParallel(self,v,tolerance=1e-10):
         return math.fabs(self.magnitude())<tolerance or math.fabs(v.magnitude())<tolerance \
                 or self.angle(v)==0 or self.angle(v)==math.pi
+    
+    
+    def component_parallel_to(self, basis):
+        basisnorm = basis.normalization()
+        weight = (self.dotProduct(basisnorm))
+        return basisnorm.scalMult(weight)
+    
+    
+    def component_orthogonal_to(self,basis):
+        self_parallel = self.component_parallel_to(basis)
+        return self.sub(self_parallel)
+    
             
-            
-vector1 = Vector([-2.328,-7.284,-1.214])
-vector2 = Vector([0,0,0])
-print((vector1.checkParallel(vector2)))
+vector1 = Vector([3.009,-6.172,3.692,-2.51])
+vector2 = Vector([6.404,-9.144,2.759,8.718])
+print((vector1.component_parallel_to(vector2)))
+print((vector1.component_orthogonal_to(vector2)))
